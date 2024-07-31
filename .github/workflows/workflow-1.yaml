@@ -14,12 +14,13 @@ jobs:
       - name: Install NodeJS dependencies
         run: npm ci
   lint-job:
+    needs: requisites-job
     runs-on: ubuntu-latest
     steps:
       - name: Lint code
         run: |
             echo "Linting code"
-            npm lint
+            npm init @eslint/config@latest && npm lint
   test-job:
     needs: lint-job
     runs-on: ubuntu-latest
