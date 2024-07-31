@@ -1,0 +1,10 @@
+name: Workflow 2
+on:
+  issues:
+    types: [opened]
+jobs:
+  info_opened_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print info opened issue
+        run: echo "{{ toJSON(github.event.issue.opened) }}"
