@@ -1,7 +1,6 @@
 name: Workflow 2
-on:
-  issues:
-    types: [opened]
+on: issues
+
 jobs:
   info_opened_issue:
     runs-on: ubuntu-latest
