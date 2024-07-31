@@ -7,10 +7,6 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
-      - name: Install NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
       - name: Install NodeJS dependencies
         run: npm ci
   lint-job:
@@ -20,7 +16,7 @@ jobs:
       - name: Lint code
         run: |
             echo "Linting code"
-            npm init @eslint/config@latest && npm lint
+            npm run lint
   test-job:
     needs: lint-job
     runs-on: ubuntu-latest
@@ -28,7 +24,7 @@ jobs:
       - name: Test code
         run : |
             echo "Testing code"
-            npm test
+            npm run test
   build-job:
     needs: test-job
     runs-on: ubuntu-latest
