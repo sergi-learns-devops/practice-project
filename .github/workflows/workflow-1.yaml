@@ -2,17 +2,13 @@ name: Workflow 1
 on: push
 
 jobs:
-  requisites-job:
+  lint-job:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v4
       - name: Install NodeJS dependencies
         run: npm ci
-  lint-job:
-    needs: requisites-job
-    runs-on: ubuntu-latest
-    steps:
       - name: Lint code
         run: |
             echo "Linting code"
@@ -21,6 +17,10 @@ jobs:
     needs: lint-job
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS dependencies
+        run: npm ci
       - name: Test code
         run : |
             echo "Testing code"
@@ -29,6 +29,10 @@ jobs:
     needs: test-job
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS dependencies
+        run: npm ci
       - name: Build code
         run: |
             echo "Building code"
